@@ -1,0 +1,290 @@
+<!--<%@ page import="java.util.Enumeration" %><%&#45;&#45;-->
+<!--Created by IntelliJ IDEA.-->
+<!--User: Administrator-->
+<!--Date: 2019/9/19-->
+<!--Time: 18:02-->
+<!--To change this template use File | Settings | File Templates.-->
+<!--&#45;&#45;%>-->
+<!--<%@ page contentType="text/html;charset=UTF-8" language="java" isELIgnored="false" %>-->
+<!--<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>-->
+<!--<%-->
+<!--pageContext.setAttribute("APP_PATH",request.getContextPath() );-->
+<!--%>-->
+<html>
+<head>
+    <script type="text/javascript" src="js/jquery.js"></script>
+    <link href="css/bootstrap.css" rel="stylesheet" >
+    <script type="text/javascript" src="js/bootstrap.js"></script>
+    <title>Index</title>
+</head>
+<body >
+
+
+
+<div class="container">
+    <div class="nav-bar">
+        <jsp:include page="headpeo.jsp"></jsp:include>
+    </div>
+    <%--        <nav class="navbar navbar-default navbar-fixed-top">--%>
+    <%--                &lt;%&ndash;    行1 导航栏&ndash;%&gt;--%>
+    <%--                <div class="row" id="rowhead">--%>
+        <%--                </div>--%>
+    <%--                <div>--%>
+        <%--                    <a href="goadmin">后台管理</a>--%>
+        <%--                </div>--%>
+
+    <%--        </nav>--%>
+    <br>
+    <%--    行2 页面主要内容--%>
+    <div class="row">
+        <div class="jumbotron" >
+            <h2 class="modal-title ">在线人才招聘系统</h2>
+
+        </div>
+        <div class="col-md-12 mainUp" >
+            <br>
+            <ul class="nav nav-tabs">
+                <li role="presentation"><a href="noticeisIndex">招聘信息</a></li>
+                <li role="presentation"><a href="#">考试资讯</a></li>
+                <li role="presentation"><a href="#">报名入口</a></li>
+            </ul>
+        </div>
+
+        <div class="col-md-12" >
+            <br>
+            <h4>展示推荐</h4>
+
+            <table class="table table-hover" >
+                <thead>
+
+
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+        <div class="col-md-12" id="rowcom">
+            <br>
+            <br>
+            <br>
+            <h4>最新公司推荐</h4>
+            <table class="table table-hover" id="tb_com">
+                <thead>
+                <tr>
+                    <th>*</th>
+                    <th>公司名字</th>
+                    <th>邮箱</th>
+                    <th>城市</th>
+                    <th>招聘信息</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="row">
+            <div class="col-md-12">
+                <%--                    <a href="goadmthome">goadmthome</a>--%>
+
+            </div>
+        </div>
+        <div class="col-md-12">
+            <h4>最新职位推荐</h4>
+            <table class="table table-hover" id="tb_job">
+                <thead>
+                <tr>
+                    <th>*</th>
+                    <th>职位</th>
+                    <th>薪资</th>
+                    <th>简介</th>
+                    <th>公司</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+
+        </div>
+        <div class="col-md-12">
+            <h4>最新人才推荐</h4>
+            <table class="table table-hover" id="tb_peo">
+                <thead>
+                <tr>
+                    <th>*</th>
+                    <th>姓名</th>
+                    <th>邮箱</th>
+                    <th>求职</th>
+                    <th>学历</th>
+                    <th>城市</th>
+                </tr>
+                </thead>
+                <tbody>
+                </tbody>
+            </table>
+        </div>
+
+    </div>
+    <%--    行3 页尾--%>
+    <div class="row">
+        页面底部：
+    </div>
+
+</div>
+
+
+
+
+<script type="text/javascript">
+    <%--    页面初始化加载 导航栏--%>
+    //     $(function () {
+    //         var ul=$("<ul></ul>").addClass("nav nav-tabs");
+    //         var indexLi = $("<li></li>").append($("<a></a>").append("首页").attr("href", "index"));
+    //         var jobLi=$("<li></li>").append($("<a></a>").append("职位").attr("href", "gojobinfo"));
+    //         var ComLi=$("<li></li>").append($("<a></a>").append("公司").attr("href", "gocominfo"));
+    //         var PeoLi=$("<li></li>").append($("<a></a>").append("人才").attr("href", "gopeoinfo"));
+    //         var regBut = $("<li></li>").append($("<button></button>").addClass("btn btn-default navbar-btn reg_btn").append("注册"));
+    //         var loginBut = $("<li></li>").append($("<button></button>").addClass("btn btn-default navbar-btn ").append("登录"));
+    //         var BackBut = $("<li></li>").append($("<button></button>").addClass("btn btn-default navbar-btn").append("后台管理"));
+    //
+    //         ul.append(indexLi)
+    //             .append(jobLi)
+    //             .append(ComLi)
+    //             .append(PeoLi)
+    //             .append(regBut)
+    //             .append(loginBut)
+    //             .append(BackBut);
+    //         var nav = $("<nav></nav>").append(ul);
+    //         nav.appendTo("#rowhead");
+    //     });
+
+    /***************
+     * 页面初始化加载公司信息
+     * 页面初始化加载职位信息
+     * 页面初始化加载求职信息
+     * */
+    $(function () {
+        fdcom();
+        fdjob();
+        fdpeo();
+    });
+    /***************
+     * 页面初始化加载公司信息
+     * */
+    function fdcom() {
+        $.ajax({
+            url:"${APP_PATH}/com",
+
+            type:"GET",
+            success: function (result) {
+                build_coms_table(result);
+            }
+        })
+    }
+
+    function build_coms_table(result) {
+        $("#tb_com tbody").empty();
+
+        var com = result.extend.pageInfo.list;
+        $.each(com, function (index, item) {
+            if (item.name != null && item.phone != null) {
+                var idtd=$("<td></td>").append(item.id);
+                var nametd = $("<td></td>").append(item.name);
+                var emailtd = $("<td></td>").append(item.email);
+                var citytd=$("<td></td>>").append(item.city);
+                var introtd=$("<td></td>").append(item.introduce);
+                $("<tr></tr>")
+                    .append(idtd)
+                    .append(nametd)
+                    .append(emailtd)
+                    .append(citytd)
+                    .append(introtd)
+                    .appendTo("#tb_com tbody");
+            }
+        });
+    }
+    /***************
+
+     * 页面初始化加载职位信息
+
+     * */
+    function fdjob() {
+
+        $.ajax({
+            url:"${APP_PATH}/job",
+            type:"GET",
+            success:function (result) {
+                build_jobs_table(result);
+
+            }
+        })
+    }
+
+    function build_jobs_table(result){
+        $("#tb_job tbody").empty();
+        var job = result.extend.pageInfo.list;
+
+        $.each(job, function (index, item) {
+
+            var idtd=$("<td></td>").append(item.id);
+            var nametd = $("<td></td>").append(item.job);
+            var emailtd = $("<td></td>").append(item.salary);
+            var citytd=$("<td></td>>").append(item.introduce);
+            var introtd=$("<td></td>").append(item.company.name);
+            $("<tr></tr>")
+                .append(idtd)
+                .append(nametd)
+                .append(emailtd)
+                .append(citytd)
+                .append(introtd)
+                .appendTo("#tb_job tbody");
+
+        });
+    }
+
+    /***************
+
+     * 页面初始化加载求职人信息
+     * */
+    function fdpeo() {
+        $.ajax({
+            url:"${APP_PATH}/peo",
+            type:"GET",
+            success: function (result) {
+                build_peo_table(result);
+            }
+        })
+    }
+    function build_peo_table(result) {
+        $("#tb_peo tbody").empty();
+        var peo=result.extend.pageInfo.list;
+        $.each(peo, function (index, item) {
+            // console.log(item);
+            var idtd=$("<td></td>").append(item.id);
+            var nametd = $("<td></td>").append(item.name);
+            var emailtd = $("<td></td>").append(item.email);
+            var intensiontd = $("<td></td>").append(item.intension);
+            var citytd=$("<td></td>>").append(item.introduce);
+            var introtd=$("<td></td>").append(item.city);
+            $("<tr></tr>")
+                .append(idtd)
+                .append(nametd)
+                .append(emailtd)
+                .append(intensiontd)
+                .append(citytd)
+                .append(introtd)
+                .appendTo("#tb_peo tbody");
+
+        });
+    }
+
+    /**
+     *
+     */
+
+
+
+</script>
+</body>
+</html>

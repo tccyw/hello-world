@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html>
+<head lang="en">
+    <meta charset="UTF-8">
+    <script src="js/jquery-1.11.0.min.js"></script>
+    <script src="js/jquery.validate.js"></script>
+    <script src="js/messages_zh.js"></script>
+    <script>
+        $(function(){
+            $("#formId").validate({
+                rules:{
+                    username:"required",
+                    password:{
+                        required:true,
+                        digits:true
+                    },
+                    repassword:{
+                        required:true,
+                        equalTo:"#passwordId"
+                    }
+                },
+                messages:{
+                    username:"用户名不能为空",
+                    password:{
+                        required:"密码不能为空",
+                        digits:"只能是正整数"
+
+                    },
+                    repassword:{
+                        required:"再次输入密码不能为空",
+                        equalTo:"两次输入不一致"
+                    }
+                }
+            });
+        });
+    </script>
+    <style>
+        table{
+            width: 50%;
+            height: 150px;
+            /* padding-top: 30px;*/
+            margin-top: 51px
+        }
+    </style>
+    <title></title>
+</head>
+<body>
+<form action="#" method="post" id="formId">
+    <table align="center" border="1">
+        <tr>
+            <td align="right">用户名：</td>
+            <td>
+                <input id="usernameId" name="username" type="text">
+            </td>
+        </tr>
+        <tr>
+            <td align="right">密码：</td>
+            <td>
+                <input type="password" name="password" id="passwordId">
+            </td>
+        </tr>
+        <tr>
+            <td align="right">再次输入密码：</td>
+            <td>
+                <input type="password" name="repassword" id="repasswordId">
+            </td>
+        </tr>
+        <tr>
+            <td align="right">性别</td>
+            <td>
+                <input type="radio" name="sex" value="男" checked="checked">男
+                <input type="radio" name="sex" value="女">女
+            </td>
+        </tr>
+        <tr>
+            <td align="right">省市</td>
+            <td>
+                <select name="pro" onchange="">
+                    <option disabled selected="selected">请选择</option>
+                    北京市，天津市，上海市，重庆市，河北省，山西省，辽宁省，
+                    吉林省，黑龙江省，江苏省，浙江省，安徽省，福建省，江西省，
+                    山东省，河南省，湖北省，湖南省，广东省，海南省，四川省，
+                    贵州省，云南省，陕西省，甘肃省，青海省，台湾省，
+                    内蒙古自治区，广西壮族自治区，西藏自治区，宁夏回族自治区，
+                    新疆维吾尔自治区，香港特别行政区，澳门特别行政区。
+                    <option value="001">北京市</option>
+                    <option value="002">天津市</option>
+                    <option value="003">上海市</option>
+                    <option value="004">天津市</option>
+                    <option value="005">重庆市</option>
+                    <option value="006">河北省</option>
+                    <option value="007">山西省</option>
+                    <option value="008">辽宁省</option>
+                    <option value="009">吉林省</option>
+                    <option value="010">黑龙江省</option>
+                    <option value="011">江苏省</option>
+                    <option value="012">浙江省</option>
+                    <option value="013">安徽省</option>
+                    <option value="014">福建省</option>
+                    <option value="015">江西省</option>
+                    <option value="016">山东省</option>
+                    河南省，湖北省，湖南省，广东省，海南省，四川省，
+                    贵州省，云南省，陕西省，甘肃省，青海省，台湾省，
+                    内蒙古自治区，广西壮族自治区，西藏自治区，宁夏回族自治区，
+                    新疆维吾尔自治区，香港特别行政区，澳门特别行政区。
+                    <option value="017">河南省</option>
+                    <option value="018">湖北省</option>
+                    <option value="019">湖南省</option>
+                    <option value="020">广东省</option>
+                    <option value="021">海南省</option>
+                    <option value="022">四川省</option>
+                    <option value="023">贵州省</option>
+                    <option value="024">云南省</option>
+                    <option value="025">陕西省</option>
+                    <option value="026">甘肃省</option>
+                    <option value="027">青海省</option>
+                    <option value="028">台湾省</option>
+                    <option value="029">内蒙古自治区</option>
+                    <option value="030">西藏自治区</option>
+                    <option value="031">宁夏回族自治区</option>
+                    <option value="032">新疆维吾尔自治区</option>
+                    <option value="033">香港特别行政区</option>
+                    <option value="034">澳门特别行政区</option>
+
+                </select>
+
+                <select name="city">
+                    <option disabled selected="selected">请选择</option>
+                </select>
+            </td>
+        </tr>
+        <tr align="center">
+            <td colspan="2">
+                <input type="submit" value="注册提交">&nbsp;&nbsp;
+                <input type="reset" value="重置">
+            </td>
+        </tr>
+    </table>
+</form>
+
+</body>
+</html>
